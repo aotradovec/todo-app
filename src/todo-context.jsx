@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import React from 'react';
 
 /**
@@ -9,6 +9,7 @@ import React from 'react';
  * 
  * @typedef TodoContextInitialState
  * @property {Todo[]} todos
+ * @property {boolean} loadingTodos
  * @property {(todo: Todo) => void} addTodo
  * @property {(id: number, todo: Todo) => void} editTodo
  * @property {(id: number) => void} removeTodo
@@ -30,8 +31,35 @@ export function useTodoContext() {
   return context;
 }
 
+function loadTodos() {
+  const todos = window.localStorage.getItem('todos');
+
+  return todos ? JSON.parse(todos) : undefined;
+}
+
+function saveTodos(todos) {
+  return window.localStorage.setItem('todos', JSON.stringify(todos));
+}
+
 export function TodoContextProvider(props) {
+  const [loadingTodos, setLoadingTodos] = useState(true);
   const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const loadedTodos = loadTodos();
+
+    if(loadedTodos) {
+      setTodos(loadedTodos);
+    }
+
+    setLoadingTodos(false);
+  }, []);
+
+  useEffect(() => {
+    if(!loadingTodos) {
+      saveTodos(todos);
+    }
+  }, [todos]);
 
   function addTodo(todo) {
     setTodos((prev) => {
