@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { Todo } from './todo';
 import '../styles/todo-list.css';
-import { TodoItem, useTodoContext } from '../todo-context';
+import { useTodoContext } from '../todo-context';
 
 export function TodoList() {
   const { todos } = useTodoContext();
 
   const sortedTodos = useMemo(() => {
-    const sortTodos = (todo1: TodoItem, todo2: TodoItem) => (
+    const sortTodos = (todo1, todo2) => (
       todo2.createdAt.getTime() - todo1.createdAt.getTime()
     );
 

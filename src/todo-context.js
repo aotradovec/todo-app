@@ -1,23 +1,9 @@
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import React from 'react';
-
-export interface TodoItem {
-  id: number;
-  text: string;
-  done: boolean;
-  createdAt: Date;
-}
-
-export interface TodoContext {
-  todos: TodoItem[];
-  addTodo: (todo: Omit<TodoItem, 'id'>) => void;
-  editTodo: (id: TodoItem['id'], todo: Omit<TodoItem, 'id'>) => void;
-  removeTodo: (id: TodoItem['id']) => void;
-}
 
 let todoIdGenerator = 1;
 
-const TodoContext = createContext<TodoContext>({
+const TodoContext = createContext({
   todos: [],
   addTodo: () => ({}),
   editTodo: () => ({}),
@@ -25,8 +11,8 @@ const TodoContext = createContext<TodoContext>({
 });
 export const useTodoContext = () => useContext(TodoContext);
 
-export function TodoContextProvider(props: PropsWithChildren<unknown>) {
-  const [todos, setTodos] = useState<TodoItem[]>([]);
+export function TodoContextProvider(props) {
+  const [todos, setTodos] = useState([]);
 
   return (
     <TodoContext.Provider
