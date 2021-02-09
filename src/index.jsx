@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './app';
+import { App } from './pages/app.page';
 import { TodoContextProvider } from './todo-context';
 
 ReactDOM.render(

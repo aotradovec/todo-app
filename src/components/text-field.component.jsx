@@ -1,10 +1,10 @@
 import React from 'react';
+import styles from './text-field.module.css';
 
-export function TextField({ id, label, className, ...rest }) {
+export function TextField({ label, className, ...rest }) {
   return (
     <input
-      id={id}
-      className={'text-field ' + className ?? ''}
+      className={[styles.textField, className ?? ''].join(' ')}
       placeholder={label}
       type="text"
       {...rest}

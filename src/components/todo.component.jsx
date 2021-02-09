@@ -1,9 +1,9 @@
 import React from 'react';
-import '../styles/todo.css';
 import { useTodoContext } from '../todo-context';
 import { Button } from './button.component';
+import styles from './todo.module.css';
 
-export function Todo({ todo }) {
+export function Todo({ todo, className }) {
   const { editTodo, removeTodo } = useTodoContext();
 
   function handleDoneButtonClick() {
@@ -15,8 +15,8 @@ export function Todo({ todo }) {
   }
 
   return (
-    <div className={`todo ${todo.done ? 'todo--done' : ''}`}>
-      <div className="todo__text">
+    <div className={[styles.todo, todo.done && styles.done, className].filter(Boolean).join(' ')}>
+      <div className={styles.text}>
         {todo.text}
       </div>
       <Button onClick={handleDoneButtonClick}>

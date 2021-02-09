@@ -1,7 +1,7 @@
 import React from 'react';
 import { Todo } from './todo.component';
-import '../styles/todo-list.css';
 import { useTodoContext } from '../todo-context';
+import styles from './todo-list.module.css';
 
 function sortTodos(a, b) {
   if(a.done && !b.done) {
@@ -20,13 +20,14 @@ export function TodoList() {
     return (
       <Todo
         key={todo.id}
+        className={styles.todo}
         todo={todo}
       />
     );
   }
 
   return (
-    <div id="todo-list">
+    <div className={styles.todoList}>
       {todos.sort(sortTodos).map(renderTodo)}
     </div>
   );

@@ -1,10 +1,7 @@
 import React from 'react';
 
-export function Button({ className, ...rest }) {
+export function Button({ ...rest }) {
   return (
-    <button
-      className={'button ' + (className ?? '')}
-      {...rest}
-    />
+    <button {...rest} />
   );
 }

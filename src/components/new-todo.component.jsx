@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField } from './text-field.component';
 import { Button } from './button.component';
-import '../styles/new-todo.css';
+import styles from './new-todo.module.css';
 import { useTodoContext } from '../todo-context';
 
 export function NewTodo() {
@@ -24,16 +24,16 @@ export function NewTodo() {
   }
 
   return (
-    <div id="new-todo">
+    <div className={styles.newTodo}>
       <TextField
-        id="new-todo__text-field"
+        className={styles.textField}
         label="Přidejte nový úkol.."
         value={newTodoText}
         onChange={handleTodoTextChange}
         onKeyPress={handleTodoTextKeyPress}
       />
       <Button
-        id="new-todo__button"
+        className={styles.button}
         onClick={addNewTodoItem}
       >
         ➕

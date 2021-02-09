@@ -33,8 +33,17 @@ export function useTodoContext() {
 
 function loadTodos() {
   const todos = window.localStorage.getItem('todos');
+  
+  if(!todos) {
+    return undefined;
+  }
 
-  return todos ? JSON.parse(todos) : undefined;
+  const parsedTodos = JSON.parse(todos);
+
+  return parsedTodos.map((todo) => ({
+    ...todo,
+    createdAt: new Date(todo.createdAt)
+  }));
 }
 
 function saveTodos(todos) {
