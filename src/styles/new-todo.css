@@ -1,0 +1,18 @@
+#new-todo {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+}
+
+#new-todo__text-field {
+  width: 100%;
+  border-radius: 0px;
+  border: none;
+  padding: 0.25rem;
+}
+
+#new-todo__button {
+  border: none;
+  border-left: 1px solid grey;
+  padding: 0.25rem;
+}

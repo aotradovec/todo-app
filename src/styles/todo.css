@@ -1,0 +1,28 @@
+.todo {
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(255,255,255,0.75);
+}
+
+.todo:not(:last-child) {
+  border-bottom: 1px solid grey;
+}
+
+.todo > * {
+  margin: 0 0.5rem;
+}
+
+.todo__text {
+  width: 100%;
+}
+
+.todo--done {
+  background-color: rgba(255,255,255,0.25);
+}
+
+.todo--done .todo__text {
+  text-decoration: line-through;
+  opacity: 0.65;
+}

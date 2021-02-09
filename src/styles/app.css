@@ -1,0 +1,7 @@
+#app {
+  width: 65%;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
