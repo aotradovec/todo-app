@@ -3,16 +3,13 @@ import '../styles/todo.css';
 import { useTodoContext } from '../todo-context';
 import { Button } from './button';
 
-export function Todo(props) {
-  const { todo } = props;
+export function Todo({ todo }) {
   const { editTodo, removeTodo } = useTodoContext();
 
   return (
-    <div
-      className={`todo ${todo.done ? 'todo--done' : ''}`}
-    >
+    <div className={`todo ${todo.done ? 'todo--done' : ''}`}>
       <div className="todo__text">
-        {props.todo.text}
+        {todo.text}
       </div>
       <Button
         onClick={() => {

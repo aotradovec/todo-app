@@ -1,10 +1,10 @@
 import React from 'react';
 
-export function Button(props) {
+export function Button({ className, ...rest }) {
   return (
     <button
-      className="button"
-      {...props}
+      className={'button ' + (className ?? '')}
+      {...rest}
     />
   );
 }

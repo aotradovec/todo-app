@@ -1,13 +1,13 @@
 import React from 'react';
 
-export function TextField(props) {
+export function TextField({ id, label, className, ...rest }) {
   return (
     <input
-      id={props.id}
-      className="text-field"
-      placeholder={props.label}
+      id={id}
+      className={'text-field ' + className ?? ''}
+      placeholder={label}
       type="text"
-      {...props}
+      {...rest}
     />
   );
 }
