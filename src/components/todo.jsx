@@ -6,22 +6,23 @@ import { Button } from './button';
 export function Todo({ todo }) {
   const { editTodo, removeTodo } = useTodoContext();
 
+  function handleDoneButtonClick() {
+    editTodo(todo.id, { done: !todo.done });
+  }
+
+  function handleRemoveButtonClick() {
+    removeTodo(todo.id);
+  }
+
   return (
     <div className={`todo ${todo.done ? 'todo--done' : ''}`}>
       <div className="todo__text">
         {todo.text}
       </div>
-      <Button
-        onClick={() => {
-          editTodo(todo.id, {
-            ...todo,
-            done: !todo.done
-          });
-        }}
-      >
+      <Button onClick={handleDoneButtonClick}>
         {todo.done ? '↩️' : '✔️'}
       </Button>
-      <Button onClick={() => removeTodo(todo.id)}>
+      <Button onClick={handleRemoveButtonClick}>
         ❌
       </Button>
     </div>

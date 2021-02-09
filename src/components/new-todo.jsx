@@ -6,16 +6,21 @@ import { useTodoContext } from '../todo-context';
 
 export function NewTodo() {
   const [newTodoText, setNewTodoText] = useState('');
-
   const { addTodo } = useTodoContext();
 
   function addNewTodoItem() {
-    addTodo({
-      text: newTodoText,
-      done: false,
-      createdAt: new Date()
-    });
+    addTodo({ text: newTodoText });
     setNewTodoText('');
+  }
+
+  function handleTodoTextChange(event) {
+    setNewTodoText(event.target.value);
+  }
+
+  function handleTodoTextKeyPress(event) {
+    if(event.key === 'Enter') {
+      addNewTodoItem();
+    }
   }
 
   return (
@@ -24,12 +29,8 @@ export function NewTodo() {
         id="new-todo__text-field"
         label="Přidejte nový úkol.."
         value={newTodoText}
-        onChange={({ target }) => setNewTodoText(target.value)}
-        onKeyPress={({ key }) => {
-          if (key === 'Enter') {
-            addNewTodoItem();
-          }
-        }}
+        onChange={handleTodoTextChange}
+        onKeyPress={handleTodoTextKeyPress}
       />
       <Button
         id="new-todo__button"
