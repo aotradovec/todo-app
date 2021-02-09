@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TextField } from './text-field';
-import { Button } from './button';
+import { TextField } from './text-field.component';
+import { Button } from './button.component';
 import '../styles/new-todo.css';
 import { useTodoContext } from '../todo-context';
 

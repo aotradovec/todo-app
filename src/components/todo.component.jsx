@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/todo.css';
 import { useTodoContext } from '../todo-context';
-import { Button } from './button';
+import { Button } from './button.component';
 
 export function Todo({ todo }) {
   const { editTodo, removeTodo } = useTodoContext();
