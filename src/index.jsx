@@ -9,5 +9,5 @@ ReactDOM.render(
       <App />
     </TodoContextProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('app-root')
 );

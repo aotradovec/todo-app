@@ -3,5 +3,15 @@
   margin: auto;
   padding: 1rem;
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #E5E5E5;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.title {
+  width: 100%;
 }
