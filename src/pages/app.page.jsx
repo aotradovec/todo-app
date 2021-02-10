@@ -16,7 +16,7 @@ export function App() {
   }
 
   return (
-    <div id={styles.appRoot}>
+    <div id={styles.app}>
       <div className={styles.header}>
         <h1 className={styles.title}>
           Todo

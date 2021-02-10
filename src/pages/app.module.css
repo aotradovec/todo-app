@@ -1,8 +1,8 @@
-#appRoot {
+#app {
   width: 65%;
   margin: auto;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: #E5E5E5;
 }
 

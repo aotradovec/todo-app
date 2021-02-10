@@ -6,13 +6,15 @@ export function Portal({ onClickAway, children }) {
   const { current: modalRootElement } = useRef(document.getElementById('modal-root'));
   const { current: element } = useRef(document.createElement('div'));
 
+  function handleElementClickEvent(event) {
+    if(event.target === element) {
+      onClickAway();
+    }
+  }
+
   useEffect(() => {
     element.className = styles.portal;
-    element.addEventListener('click', function (event) {
-      if(event.target === element) {
-        onClickAway();
-      }
-    });
+    element.addEventListener('click', handleElementClickEvent);
 
     modalRootElement.appendChild(element);
 
