@@ -59,7 +59,7 @@ export function CrupdateTodoModal({
         </div>
         <div className={styles.actions}>
           <Button onClick={crupdateTodoItem}>
-            Přidat
+            {isCreateMode ? 'Přidat' : 'Upravit'}
           </Button>
         </div>
       </div>
