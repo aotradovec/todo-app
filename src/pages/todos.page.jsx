@@ -2,8 +2,8 @@ import React, { useMemo, useState } from 'react';
 import { Todo } from '../components/todo.component';
 import { useTodoContext } from '../contexts/todo-context';
 import styles from './todos.module.css';
-import { CrupdateTodoModal } from '../components/crupdate-todo-modal.component';
 import { Button } from '../components/button.component';
+import { TodoDialog } from '../components/todo-dialog.component';
 
 function sortTodos(a, b) {
   if(a.done && !b.done) {
@@ -16,7 +16,7 @@ function sortTodos(a, b) {
 }
 
 export function Todos() {
-  const [showNewTodoModal, setShowNewTodoModal] = useState(false);
+  const [showNewTodoDialog, setShowNewTodoDialog] = useState(false);
   const todoContext = useTodoContext();
   const sortedTodos = useMemo(() => (todoContext.data ?? []).sort(sortTodos), [todoContext.data]);
 
@@ -26,11 +26,11 @@ export function Todos() {
         <h3>Todos</h3>
         {todoContext.loading
           ? (<div className={styles.loading}>Načítání..</div>)
-          : (<Button onClick={() => setShowNewTodoModal(true)}>➕</Button>)
+          : (<Button onClick={() => setShowNewTodoDialog(true)}>➕</Button>)
         }
       </div>
       {sortedTodos.map((t) => <Todo key={t.id} className={styles.todo} data={t} />)}
-      {showNewTodoModal && (<CrupdateTodoModal onClose={() => setShowNewTodoModal(false)} />)}
+      {showNewTodoDialog && (<TodoDialog onClose={() => setShowNewTodoDialog(false)} />)}
     </div>
   );
 }

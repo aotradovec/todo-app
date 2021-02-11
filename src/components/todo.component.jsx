@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useTodoContext } from '../contexts/todo-context';
 import { classNames } from '../lib/classnames';
 import { Button } from './button.component';
-import { CrupdateTodoModal } from './crupdate-todo-modal.component';
+import { TodoDialog } from './todo-dialog.component';
 import styles from './todo.module.css';
 
 export function Todo({ data, className }) {
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showEditDialog, setShowEditDialog] = useState(false);
   const todoContext = useTodoContext();
 
   function handleDoneButtonClick() {
@@ -25,13 +25,13 @@ export function Todo({ data, className }) {
       <Button onClick={(handleDoneButtonClick)}>
         {data.done ? '↩️' : '✔️'}
       </Button>
-      <Button onClick={() => setShowEditModal(true)}>
+      <Button onClick={() => setShowEditDialog(true)}>
         ✏️
       </Button>
       <Button onClick={handleRemoveButtonClick}>
         ❌
       </Button>
-      {showEditModal && (<CrupdateTodoModal data={data} onClose={() => setShowEditModal(false)} />)}
+      {showEditDialog && (<TodoDialog data={data} onClose={() => setShowEditDialog(false)} />)}
     </div>
   );
 }
