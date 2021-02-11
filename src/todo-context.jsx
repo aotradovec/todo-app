@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import React from 'react';
+import { todoApi } from './lib/todo-api';
 
 /**
  * @typedef Todo
@@ -8,11 +9,12 @@ import React from 'react';
  * @property {Date} createdAt 
  * 
  * @typedef TodoContextInitialState
- * @property {Todo[]} todos
- * @property {boolean} loadingTodos
- * @property {(todo: Todo) => void} addTodo
- * @property {(id: number, todo: Todo) => void} editTodo
- * @property {(id: number) => void} removeTodo
+ * @property {Todo[]} data
+ * @property {boolean} loading
+ * @property {Error} error
+ * @property {(todo: Todo) => void} create
+ * @property {(id: number, todo: Todo) => void} update
+ * @property {(id: number) => void} remove
  */
 
 /**
@@ -31,80 +33,58 @@ export function useTodoContext() {
   return context;
 }
 
-function loadTodos() {
-  const todos = window.localStorage.getItem('todos');
-  
-  if(!todos) {
-    return undefined;
-  }
-
-  const parsedTodos = JSON.parse(todos);
-
-  return parsedTodos.map((todo) => ({
-    ...todo,
-    createdAt: new Date(todo.createdAt)
-  }));
-}
-
-function saveTodos(todos) {
-  return window.localStorage.setItem('todos', JSON.stringify(todos));
-}
-
 export function TodoContextProvider(props) {
-  const [loadingTodos, setLoadingTodos] = useState(true);
-  const [todos, setTodos] = useState([]);
+  const [result, setResult] = useState({ data: null, loading: true, error: null });
 
-  useEffect(() => {
-    const loadedTodos = loadTodos();
+  useEffect(async () => {
+    setResult({ data: null, loading: true, error: null });
 
-    if(loadedTodos) {
-      setTodos(loadedTodos);
-    }
+    const loadedTodos = await todoApi.get();
 
-    setLoadingTodos(false);
+    setResult({ data: loadedTodos, loading: false, error: null });
   }, []);
 
-  useEffect(() => {
-    if(!loadingTodos) {
-      saveTodos(todos);
-    }
-  }, [todos]);
+  async function create(data) {
+    setResult((prev) => ({ ...prev, loading: true, error: null }));
 
-  function addTodo(todo) {
-    setTodos((prev) => {
-      const newTodo = {
-        ...todo,
-        id: new Date().valueOf(),
-        createdAt: new Date()
-      };
+    const newData = await todoApi.create(data);
 
-      return [...prev, newTodo];
-    });
+    setResult((prev) => ({ data: [...prev.data, newData], loading: false, error: null }));
   }
 
-  function editTodo(id, editedTodo) {
-    setTodos((prev) => (
-      prev.map((originalTodo) => (
-        originalTodo.id === id
-          ? { ...originalTodo, ...editedTodo }
-          : originalTodo
-      ))
-    ));
+  async function update(id, data) {
+    setResult((prev) => ({ ...prev, loading: true, error: null }));
+
+    const newData = await todoApi.update(data);
+
+    setResult((prev) => ({ 
+      data: prev.data.map((d) => d.id === id ? newData : d), 
+      loading: false,
+      error: null
+    }));
   }
 
-  function removeTodo(id) {
-    setTodos((prev) => (
-      prev.filter((todo) => todo.id !== id)
-    ));
+  async function remove(id) {
+    setResult((prev) => ({ ...prev, loading: true, error: null }));
+
+    await todoApi.remove(id);
+
+    setResult((prev) => ({ 
+      data: prev.data.filter((d) => d.id !== id), 
+      loading: false,
+      error: null
+    }));
   }
 
   return (
     <TodoContext.Provider
       value={{
-        todos,
-        addTodo,
-        editTodo,
-        removeTodo
+        data: result.data,
+        loading: result.loading,
+        error: result.error,
+        create,
+        update,
+        remove
       }}
     >
       {props.children}

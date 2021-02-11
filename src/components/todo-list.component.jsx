@@ -14,8 +14,8 @@ function sortTodos(a, b) {
 }
 
 export function TodoList() {
-  const { todos } = useTodoContext();
-  const sortedTodos = useMemo(() => todos.sort(sortTodos), [todos]);
+  const todoContext = useTodoContext();
+  const sortedTodos = useMemo(() => (todoContext.data ?? []).sort(sortTodos), [todoContext.data]);
 
   return (
     <div className={styles.todoList}>
