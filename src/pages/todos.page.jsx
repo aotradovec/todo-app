@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Button } from '../components/button.component';
 import { CrupdateTodoModal } from '../components/crupdate-todo-modal.component';
 import { TodoList } from '../components/todo-list.component';
-import styles from './home.module.css';
+import styles from './todos.module.css';
 
-export function Home() {
+export function Todos() {
   const [showNewTodoModal, setShowNewTodoModal] = useState(false);
 
   return (

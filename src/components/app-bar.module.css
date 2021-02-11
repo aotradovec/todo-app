@@ -1,5 +1,12 @@
 .app_bar {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid grey;
+}
+
+.user_greet {
+  margin: 0;
+  padding-right: 1.5rem;
 }
