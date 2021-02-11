@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Todo } from './todo.component';
 import { useTodoContext } from '../todo-context';
 import styles from './todo-list.module.css';
@@ -15,20 +15,11 @@ function sortTodos(a, b) {
 
 export function TodoList() {
   const { todos } = useTodoContext();
-
-  function renderTodo(todo) {
-    return (
-      <Todo
-        key={todo.id}
-        className={styles.todo}
-        todo={todo}
-      />
-    );
-  }
+  const sortedTodos = useMemo(() => todos.sort(sortTodos), [todos]);
 
   return (
     <div className={styles.todoList}>
-      {todos.sort(sortTodos).map(renderTodo)}
+      {sortedTodos.map((t) => <Todo key={t.id} className={styles.todo} todo={t} />)}
     </div>
   );
 }
