@@ -4,46 +4,33 @@ import { Button } from './button.component';
 import { CrupdateTodoModal } from './crupdate-todo-modal.component';
 import styles from './todo.module.css';
 
-export function Todo({ todo, className }) {
+export function Todo({ data, className }) {
   const [showEditModal, setShowEditModal] = useState(false);
-  const { editTodo, removeTodo } = useTodoContext();
+  const todoContext = useTodoContext();
 
   function handleDoneButtonClick() {
-    editTodo(todo.id, { done: !todo.done });
-  }
-
-  function handleEditButtonClick() {
-    setShowEditModal(true);
-  }
-
-  function handleEditModalClose() {
-    setShowEditModal(false);
+    todoContext.update(data.id, { done: !data.done });
   }
 
   function handleRemoveButtonClick() {
-    removeTodo(todo.id);
+    todoContext.remove(data.id);
   }
 
   return (
-    <div className={[styles.todo, todo.done && styles.done, className].filter(Boolean).join(' ')}>
+    <div className={[styles.todo, data.done && styles.done, className].filter(Boolean).join(' ')}>
       <div className={styles.text}>
-        {todo.text}
+        {data.text}
       </div>
-      <Button onClick={handleDoneButtonClick}>
-        {todo.done ? '↩️' : '✔️'}
+      <Button onClick={(handleDoneButtonClick)}>
+        {data.done ? '↩️' : '✔️'}
       </Button>
-      <Button onClick={handleEditButtonClick}>
+      <Button onClick={() => setShowEditModal(true)}>
         ✏️
       </Button>
       <Button onClick={handleRemoveButtonClick}>
         ❌
       </Button>
-      {showEditModal && (
-        <CrupdateTodoModal
-          todo={todo}
-          onClose={handleEditModalClose}
-        />
-      )}
+      {showEditModal && (<CrupdateTodoModal data={data} onClose={() => setShowEditModal(false)} />)}
     </div>
   );
 }

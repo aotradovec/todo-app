@@ -55,7 +55,7 @@ export function TodoContextProvider(props) {
   async function update(id, data) {
     setResult((prev) => ({ ...prev, loading: true, error: null }));
 
-    const newData = await todoApi.update(data);
+    const newData = await todoApi.update(id, data);
 
     setResult((prev) => ({ 
       data: prev.data.map((d) => d.id === id ? newData : d), 

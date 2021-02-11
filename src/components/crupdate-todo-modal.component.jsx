@@ -6,12 +6,12 @@ import { TextField } from './text-field.component';
 import { useTodoContext } from '../todo-context';
 
 export function CrupdateTodoModal({ 
-  todo,
+  data,
   onClose
 }) {
-  const [todoText, setTodoText] = useState(todo?.text ?? '');
-  const { addTodo, editTodo } = useTodoContext();
-  const isCreateMode = useMemo(() => !todo, [!!todo]);
+  const [todoText, setTodoText] = useState(data?.text ?? '');
+  const todoContext = useTodoContext();
+  const isCreateMode = useMemo(() => !data, [!!data]);
 
   function crupdateTodoItem() {
     const todoItem = {
@@ -19,13 +19,12 @@ export function CrupdateTodoModal({
     };
 
     if(isCreateMode) {
-      addTodo(todoItem);
+      todoContext.create(todoItem);
     } else {
-      editTodo(todo.id, { ...todo, ...todoItem });
+      todoContext.update(data.id, { ...data, ...todoItem });
     }
 
     setTodoText('');
-
     onClose();
   }
 
