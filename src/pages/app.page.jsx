@@ -4,15 +4,21 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { Todos } from './todos.page';
 import { About } from './about.page';
 import { AppBar } from '../components/app-bar.component';
+import { ProtectedRoute } from '../components/protected-route.component';
+import { Auth } from './auth.page';
+import { useUserContext } from '../contexts/user-context';
 
 export function App() {
+  const userContext = useUserContext();
+
   return (
     <div>
-      <AppBar />
+      {userContext.isLoggedIn && <AppBar />}
       <div className={styles.router}>
         <Switch>
-          <Route path="/todos" exact component={Todos} />
-          <Route path="/about" exact component={About} />
+          <Route path="/auth" exact component={Auth} />
+          <ProtectedRoute path="/todos" exact component={Todos} />
+          <ProtectedRoute path="/about" exact component={About} />
           <Redirect to="/todos" />
         </Switch>
       </div>

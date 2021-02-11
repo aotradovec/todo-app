@@ -67,16 +67,16 @@ export const todoApi = {
 
     setLocalTodos(data.filter((t) => t.id !== id));
   },
-  async getUser() {
-    await wait(250);
-
-    return {
-      username: 'admin'
-    };
-  },
   async login({ username, password }) {
     await wait(250);
     
-    return username === 'admin' && password === 'admin';
+    if(username === 'admin' && password === 'admin') {
+      return {
+        id: 1,
+        username: 'admin'
+      };
+    }
+
+    return null;
   }
 };
