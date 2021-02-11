@@ -1,0 +1,16 @@
+.nav_menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: black;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav_link__active {
+  background-color: rgba(66, 165, 245, 0.1);
+  border-bottom-color: rgba(66, 165, 245);
+}

@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { App } from './pages/app.page';
 import { TodoContextProvider } from './todo-context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TodoContextProvider>
-      <App />
-    </TodoContextProvider>
+    <BrowserRouter>
+      <TodoContextProvider>
+        <App />
+      </TodoContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('app-root')
 );
