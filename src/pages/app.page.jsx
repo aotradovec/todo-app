@@ -4,15 +4,15 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import { Todos } from './todos.page';
 import { About } from './about.page';
 import { AppBar } from '../components/app-bar.component';
-import { ProtectedRoute } from '../components/protected-route.component';
 import { Auth } from './auth.page';
 import { useUserContext } from '../contexts/user-context';
+import { ProtectedRoute } from '../components/protected-route.component';
 
 export function App() {
   const userContext = useUserContext();
 
   return (
-    <div>
+    <React.Fragment>
       {userContext.isLoggedIn && <AppBar />}
       <div className={styles.router}>
         <Switch>
@@ -22,6 +22,6 @@ export function App() {
           <Redirect to="/todos" />
         </Switch>
       </div>
-    </div>
+    </React.Fragment>
   );
 }

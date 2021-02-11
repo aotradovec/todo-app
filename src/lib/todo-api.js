@@ -36,22 +36,10 @@ export const todoApi = {
 
     const localData = getParsedLocalTodos();
     const index = localData.findIndex((d) => d.id === id);
-    
-    console.log('id', id);
-    console.log('localData', localData);
-    console.log('index', index);
-    console.log('localData[index]', localData[index]);
 
-    const mergedData = { ...localData[index], ...newData };
-
-    console.log('mergedData', mergedData);
-
-    localData[index] = mergedData;
+    localData[index] = { ...localData[index], ...newData };
 
     setLocalTodos(localData);
-
-    console.log('newData', newData);
-    console.log('localData[index]', localData[index]);
 
     return localData[index];
   },

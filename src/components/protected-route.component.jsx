@@ -9,7 +9,7 @@ export function ProtectedRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={(props) => (
-        userContext.loggedIn
+        userContext.isLoggedIn
           ? <Component {...props} />
           : <Redirect to="/auth" />
       )}

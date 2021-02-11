@@ -6,7 +6,13 @@
   border-bottom: 1px solid grey;
 }
 
-.user_greet {
+.user_menu_wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 0 1.5rem;
+}
+
+.user_greeting {
   margin: 0;
   padding-right: 1.5rem;
 }

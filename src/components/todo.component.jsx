@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTodoContext } from '../contexts/todo-context';
+import { classNames } from '../lib/classnames';
 import { Button } from './button.component';
 import { CrupdateTodoModal } from './crupdate-todo-modal.component';
 import styles from './todo.module.css';
@@ -17,7 +18,7 @@ export function Todo({ data, className }) {
   }
 
   return (
-    <div className={[styles.todo, data.done && styles.done, className].filter(Boolean).join(' ')}>
+    <div className={classNames(styles.todo, data.done && styles.done, className)}>
       <div className={styles.text}>
         {data.text}
       </div>
