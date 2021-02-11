@@ -4,6 +4,10 @@ function getParsedLocalTodos() {
   const localData = localStorage.getItem('todos');
   const localParsedData = localData ? JSON.parse(localData) : undefined;
 
+  if(!localParsedData) {
+    return undefined;
+  }
+
   return localParsedData.map((el) => ({
     ...el,
     createdAt: new Date(el.createdAt)

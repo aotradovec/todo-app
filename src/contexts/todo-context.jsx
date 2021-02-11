@@ -49,7 +49,11 @@ export function TodoContextProvider(props) {
 
     const newData = await todoApi.create(data);
 
-    setResult((prev) => ({ data: [...prev.data, newData], loading: false, error: null }));
+    setResult((prev) => ({ 
+      data: [...(prev.data ?? []), newData],
+      loading: false,
+      error: null
+    }));
   }
 
   async function update(id, data) {
@@ -58,7 +62,7 @@ export function TodoContextProvider(props) {
     const newData = await todoApi.update(id, data);
 
     setResult((prev) => ({ 
-      data: prev.data.map((d) => d.id === id ? newData : d), 
+      data: (prev.data ?? []).map((d) => d.id === id ? newData : d), 
       loading: false,
       error: null
     }));
