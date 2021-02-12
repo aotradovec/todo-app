@@ -5,7 +5,7 @@ import { Button } from './button.component';
 import { TodoDialog } from './todo-dialog.component';
 import styles from './todo.module.css';
 
-export function Todo({ data, className }) {
+export const Todo = React.memo(function ({ data, className }) {
   const [showEditDialog, setShowEditDialog] = useState(false);
   const todoContext = useTodoContext();
 
@@ -34,4 +34,4 @@ export function Todo({ data, className }) {
       {showEditDialog && (<TodoDialog data={data} onClose={() => setShowEditDialog(false)} />)}
     </div>
   );
-}
+});
