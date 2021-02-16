@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
-import { todoApi } from '../lib/todo-api';
+import { userApi } from '../lib/user-api';
 
 /**
  * @typedef User
@@ -34,7 +34,7 @@ export function UserContextProvider(props) {
   const isLoggedIn = useMemo(() => !!currentUser, [currentUser]);
 
   async function login({ username, password }) {
-    const user = await todoApi.login({ username, password });
+    const user = await userApi.login({ username, password });
 
     setCurrentUser(user);
 
