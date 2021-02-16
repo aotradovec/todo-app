@@ -7,7 +7,7 @@ export function Portal({ onClickAway, children }) {
   const { current: element } = useRef(document.createElement('div'));
 
   function handleElementClickEvent(event) {
-    if(event.target === element) {
+    if (event.target === element) {
       onClickAway();
     }
   }

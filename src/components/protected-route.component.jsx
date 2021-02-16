@@ -4,7 +4,7 @@ import { useUserContext } from '../contexts/user-context';
 
 export function ProtectedRoute({ component: Component, ...rest }) {
   const userContext = useUserContext();
-  
+
   return (
     <Route
       {...rest}

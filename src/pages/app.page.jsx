@@ -3,7 +3,7 @@ import styles from './app.module.css';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Todos } from './todos.page';
 import { About } from './about.page';
-import { AppBar } from '../components/app-bar.component';
+import { AppBar } from '../components/app-bar/index.component';
 import { Auth } from './auth.page';
 import { useUserContext } from '../contexts/user-context';
 import { ProtectedRoute } from '../components/protected-route.component';

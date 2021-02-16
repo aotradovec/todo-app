@@ -15,7 +15,7 @@ export function TodoDialog({ data, onClose }) {
       text: todoText.trim()
     };
 
-    if(isCreateMode) {
+    if (isCreateMode) {
       todoContext.create(todoItem);
     } else {
       todoContext.update(data.id, { ...data, ...todoItem });
@@ -41,7 +41,7 @@ export function TodoDialog({ data, onClose }) {
               className={styles.closeButton}
               onClick={onClose}
             >
-            ❌
+              ❌
             </Button>
           </div>
         </div>

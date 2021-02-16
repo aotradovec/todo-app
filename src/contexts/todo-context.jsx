@@ -1,13 +1,12 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import React from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { todoApi } from '../lib/todo-api';
 
 /**
  * @typedef Todo
  * @property {number} id
  * @property {string} text
- * @property {Date} createdAt 
- * 
+ * @property {Date} createdAt
+ *
  * @typedef TodoContextInitialState
  * @property {Todo[]} data
  * @property {boolean} loading
@@ -26,7 +25,7 @@ const TodoContext = createContext(initState);
 export function useTodoContext() {
   const context = useContext(TodoContext);
 
-  if(!context) {
+  if (!context) {
     throw new Error('TodoContext not found');
   }
 
@@ -49,7 +48,7 @@ export function TodoContextProvider(props) {
 
     const newData = await todoApi.create(data);
 
-    setResult((prev) => ({ 
+    setResult((prev) => ({
       data: [...(prev.data ?? []), newData],
       loading: false,
       error: null
@@ -61,8 +60,8 @@ export function TodoContextProvider(props) {
 
     const newData = await todoApi.update(id, data);
 
-    setResult((prev) => ({ 
-      data: (prev.data ?? []).map((d) => d.id === id ? newData : d), 
+    setResult((prev) => ({
+      data: (prev.data ?? []).map((d) => d.id === id ? newData : d),
       loading: false,
       error: null
     }));
@@ -73,8 +72,8 @@ export function TodoContextProvider(props) {
 
     await todoApi.remove(id);
 
-    setResult((prev) => ({ 
-      data: prev.data.filter((d) => d.id !== id), 
+    setResult((prev) => ({
+      data: prev.data.filter((d) => d.id !== id),
       loading: false,
       error: null
     }));

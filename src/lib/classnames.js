@@ -10,7 +10,7 @@ export function classNames() {
     if (argType === 'string' || argType === 'number') {
       classes.push(arg);
     } else if (Array.isArray(arg)) {
-      if(arg.length) {
+      if (arg.length) {
         var inner = classNames.apply(null, arg);
         if (inner) {
           classes.push(inner);

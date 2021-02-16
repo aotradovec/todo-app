@@ -4,7 +4,7 @@ function getParsedLocalTodos() {
   const localData = localStorage.getItem('todos');
   const localParsedData = localData ? JSON.parse(localData) : undefined;
 
-  if(!localParsedData) {
+  if (!localParsedData) {
     return undefined;
   }
 
@@ -31,7 +31,7 @@ export const todoApi = {
 
     const localData = getParsedLocalTodos() ?? [];
 
-    setLocalTodos([ ...localData, data ]);
+    setLocalTodos([...localData, data]);
 
     return data;
   },
@@ -61,8 +61,8 @@ export const todoApi = {
   },
   async login({ username, password }) {
     await wait(250);
-    
-    if(username === 'admin' && password === 'admin') {
+
+    if (username === 'admin' && password === 'admin') {
       return {
         id: 1,
         username: 'admin'

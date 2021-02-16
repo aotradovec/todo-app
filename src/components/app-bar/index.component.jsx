@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './app-bar.module.css';
-import { NavMenu } from './app-bar/nav-menu.component';
-import { useUserContext } from '../contexts/user-context';
-import { Button } from './button.component';
+import styles from './index.module.css';
+import { NavMenu } from './nav-menu.component';
+import { useUserContext } from '../../contexts/user-context';
+import { Button } from '../button.component';
 
 export function AppBar() {
   const userContext = useUserContext();

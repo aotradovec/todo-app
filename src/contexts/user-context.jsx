@@ -5,7 +5,7 @@ import { todoApi } from '../lib/todo-api';
  * @typedef User
  * @property {number} id
  * @property {string} username
- * 
+ *
  * @typedef UserContextInitialState
  * @property {User|null} currentUser
  * @property {boolean} isLoggedIn
@@ -22,7 +22,7 @@ const UserContext = createContext(initState);
 export function useUserContext() {
   const context = useContext(UserContext);
 
-  if(!context) {
+  if (!context) {
     throw new Error('UserContext not found');
   }
 

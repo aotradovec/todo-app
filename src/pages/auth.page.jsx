@@ -16,7 +16,7 @@ export function Auth() {
 
     const user = await userContext.login({ username, password });
 
-    if(user) {
+    if (user) {
       history.push('/todos');
     }
   }

@@ -6,9 +6,9 @@ import { Button } from '../components/button.component';
 import { TodoDialog } from '../components/todo-dialog.component';
 
 function sortTodos(a, b) {
-  if(a.done && !b.done) {
+  if (a.done && !b.done) {
     return 1;
-  } else if(!a.done && b.done) {
+  } else if (!a.done && b.done) {
     return -1;
   }
 
