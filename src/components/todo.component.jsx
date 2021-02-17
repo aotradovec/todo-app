@@ -5,7 +5,7 @@ import { TodoDialog } from './todo-dialog.component';
 import styles from './todo.module.css';
 import { IconButton } from './icon-button.component';
 import Icon from '@mdi/react';
-import { mdiBackupRestore, mdiCheck, mdiDelete, mdiPencil } from '@mdi/js';
+import { mdiCheckCircle, mdiCheckCircleOutline, mdiDeleteForeverOutline, mdiPencil } from '@mdi/js';
 
 export const Todo = React.memo(function({ data, className }) {
   const [showEditDialog, setShowEditDialog] = useState(false);
@@ -21,17 +21,21 @@ export const Todo = React.memo(function({ data, className }) {
 
   return (
     <div className={classNames(styles.todo, data.done && styles.done, className)}>
+      <IconButton className={styles.action} onClick={handleDoneButtonClick}>
+        <Icon
+          path={data.done ? mdiCheckCircle : mdiCheckCircleOutline}
+          size={1}
+          color="#50C878"
+        />
+      </IconButton>
       <div className={styles.text}>
         {data.text}
       </div>
-      <IconButton className={styles.action} onClick={handleDoneButtonClick}>
-        <Icon path={data.done ? mdiBackupRestore : mdiCheck} size={1} />
-      </IconButton>
       <IconButton className={styles.action} onClick={() => setShowEditDialog(true)}>
-        <Icon path={mdiPencil} size={1} />
+        <Icon path={mdiPencil} size={1} color="#634919" />
       </IconButton>
       <IconButton className={styles.action} onClick={handleRemoveButtonClick}>
-        <Icon path={mdiDelete} size={1} />
+        <Icon path={mdiDeleteForeverOutline} size={1} color="red" />
       </IconButton>
       {showEditDialog && (<TodoDialog data={data} onClose={() => setShowEditDialog(false)} />)}
     </div>
