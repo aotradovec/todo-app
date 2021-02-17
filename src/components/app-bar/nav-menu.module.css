@@ -8,9 +8,14 @@
   color: black;
   padding: 1rem 2rem;
   border-bottom: 2px solid transparent;
+  transition: background-color 200ms, border-bottom-color 200ms;
+}
+
+.nav_link:hover {
+  background-color: rgba(66, 165, 245, 0.1);
 }
 
 .nav_link__active {
-  background-color: rgba(66, 165, 245, 0.1);
+  background-color: rgba(66, 165, 245, 0.2);
   border-bottom-color: #42a5f5;
 }

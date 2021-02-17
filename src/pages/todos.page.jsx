@@ -25,7 +25,7 @@ export function Todos() {
   return (
     <div className={styles.todo_list}>
       <div className={styles.header}>
-        <h3>Todos</h3>
+        <h3 className={styles.header_text}>Todos</h3>
         {todoContext.loading
           ? (<div className={styles.loading}>Načítání..</div>)
           : (

@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0 1.5rem;
 }
 
 .user_greeting {
