@@ -14,14 +14,14 @@ export function App() {
   return (
     <React.Fragment>
       {userContext.isLoggedIn && <AppBar />}
-      <div className={styles.router}>
+      <main className={styles.main}>
         <Switch>
           <Route path="/auth" exact component={Auth} />
           <ProtectedRoute path="/todos" exact component={Todos} />
           <ProtectedRoute path="/about" exact component={About} />
           <Redirect to="/todos" />
         </Switch>
-      </div>
+      </main>
     </React.Fragment>
   );
 }

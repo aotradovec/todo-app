@@ -10,7 +10,7 @@ export function AppBar() {
   const userContext = useUserContext();
 
   return (
-    <div className={styles.app_bar}>
+    <header className={styles.app_bar}>
       <NavMenu />
       <div className={styles.user_menu_wrapper}>
         <h4 className={styles.user_greeting}>
@@ -20,6 +20,6 @@ export function AppBar() {
           <Icon path={mdiLogoutVariant} size={1} />
         </IconButton>
       </div>
-    </div>
+    </header>
   );
 }

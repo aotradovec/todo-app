@@ -49,9 +49,9 @@ export const Todo = React.forwardRef(({ data, className }, ref) => {
       <div className={styles.text}>
         {data.text}
       </div>
-      <div className={styles.time}>
+      <time className={styles.time}>
         {data.createdAt.toLocaleString()}
-      </div>
+      </time>
       <IconButton
         className={styles.action}
         disabled={data.done}
