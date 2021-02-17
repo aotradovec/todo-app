@@ -36,21 +36,18 @@ export function TodoDialog({ data, onClose }) {
     <Modal onClickAway={onClose}>
       <div className={styles.dialog}>
         <div className={styles.header}>
-          <h2 className={styles.title}>
+          <h3 className={styles.title}>
             {isCreateMode ? 'Nový úkol' : 'Upravit úkol'}
-          </h2>
+          </h3>
           <div>
-            <IconButton
-              onClick={onClose}
-            >
+            <IconButton className={styles.close_button} onClick={onClose}>
               <Icon path={mdiClose} size={1} />
             </IconButton>
           </div>
         </div>
         <div className={styles.content}>
           <TextField
-            className={styles.textField}
-            label={isCreateMode ? 'Přidejte nový úkol..' : undefined}
+            label="Název"
             value={todoText}
             onChange={handleTodoTextChange}
           />
