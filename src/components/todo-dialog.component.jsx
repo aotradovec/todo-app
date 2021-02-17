@@ -7,25 +7,27 @@ import { useTodoContext } from '../contexts/todo-context';
 import { IconButton } from './icon-button.component';
 import Icon from '@mdi/react';
 import { mdiClose } from '@mdi/js';
+import { usePromise } from '../hooks/use-promise';
+import { Loading } from './loading.component';
 
 export function TodoDialog({ data, onClose }) {
   const [todoText, setTodoText] = useState(data?.text ?? '');
+  const crupdate = usePromise(crupdateTodoItem);
   const todoContext = useTodoContext();
   const isCreateMode = useMemo(() => !data, [!!data]);
 
-  function crupdateTodoItem() {
+  async function crupdateTodoItem() {
     const todoItem = {
       text: todoText.trim()
     };
 
-    if (isCreateMode) {
-      todoContext.create(todoItem);
-    } else {
-      todoContext.update(data.id, { ...data, ...todoItem });
-    }
+    const promise = isCreateMode
+      ? todoContext.create(todoItem)
+      : todoContext.update(data.id, { ...data, ...todoItem });
 
-    setTodoText('');
-    onClose();
+    promise.then(onClose);
+
+    return promise;
   }
 
   function handleTodoTextChange(event) {
@@ -53,9 +55,14 @@ export function TodoDialog({ data, onClose }) {
           />
         </div>
         <div className={styles.actions}>
-          <Button onClick={crupdateTodoItem}>
-            {isCreateMode ? 'Přidat' : 'Upravit'}
-          </Button>
+          {crupdate.pending
+            ? (<Loading />)
+            : (
+              <Button onClick={crupdate.fire}>
+                {isCreateMode ? 'Přidat' : 'Upravit'}
+              </Button>
+            )
+          }
         </div>
       </div>
     </Modal>
