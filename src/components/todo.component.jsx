@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useTodoContext } from '../contexts/todo-context';
 import { classNames } from '../lib/classnames';
-import { Button } from './button.component';
 import { TodoDialog } from './todo-dialog.component';
 import styles from './todo.module.css';
+import { IconButton } from './icon-button.component';
+import Icon from '@mdi/react';
+import { mdiBackupRestore, mdiCheck, mdiDelete, mdiPencil } from '@mdi/js';
 
-export const Todo = React.memo(function ({ data, className }) {
+export const Todo = React.memo(function({ data, className }) {
   const [showEditDialog, setShowEditDialog] = useState(false);
   const todoContext = useTodoContext();
 
@@ -22,15 +24,15 @@ export const Todo = React.memo(function ({ data, className }) {
       <div className={styles.text}>
         {data.text}
       </div>
-      <Button onClick={(handleDoneButtonClick)}>
-        {data.done ? '↩️' : '✔️'}
-      </Button>
-      <Button onClick={() => setShowEditDialog(true)}>
-        ✏️
-      </Button>
-      <Button onClick={handleRemoveButtonClick}>
-        ❌
-      </Button>
+      <IconButton className={styles.action} onClick={handleDoneButtonClick}>
+        <Icon path={data.done ? mdiBackupRestore : mdiCheck} size={1} />
+      </IconButton>
+      <IconButton className={styles.action} onClick={() => setShowEditDialog(true)}>
+        <Icon path={mdiPencil} size={1} />
+      </IconButton>
+      <IconButton className={styles.action} onClick={handleRemoveButtonClick}>
+        <Icon path={mdiDelete} size={1} />
+      </IconButton>
       {showEditDialog && (<TodoDialog data={data} onClose={() => setShowEditDialog(false)} />)}
     </div>
   );

@@ -2,7 +2,9 @@ import React from 'react';
 import styles from './index.module.css';
 import { NavMenu } from './nav-menu.component';
 import { useUserContext } from '../../contexts/user-context';
-import { Button } from '../button.component';
+import Icon from '@mdi/react';
+import { mdiLogoutVariant } from '@mdi/js';
+import { IconButton } from '../icon-button.component';
 
 export function AppBar() {
   const userContext = useUserContext();
@@ -14,9 +16,9 @@ export function AppBar() {
         <h4 className={styles.user_greeting}>
           Welcome, {userContext.currentUser.username}
         </h4>
-        <Button onClick={userContext.logout}>
-          🚪
-        </Button>
+        <IconButton onClick={userContext.logout}>
+          <Icon path={mdiLogoutVariant} size={1} />
+        </IconButton>
       </div>
     </div>
   );

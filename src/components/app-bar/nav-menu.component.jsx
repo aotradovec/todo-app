@@ -4,7 +4,7 @@ import styles from './nav-menu.module.css';
 
 export function NavMenu() {
   return (
-    <div className={styles.nav_menu}>
+    <div className={styles.wrapper}>
       <NavLink className={styles.nav_link} activeClassName={styles.nav_link__active} exact to="/todos">
         Todos
       </NavLink>

@@ -4,6 +4,9 @@ import styles from './todo-dialog.module.css';
 import { Button } from './button.component';
 import { TextField } from './text-field.component';
 import { useTodoContext } from '../contexts/todo-context';
+import { IconButton } from './icon-button.component';
+import Icon from '@mdi/react';
+import { mdiClose } from '@mdi/js';
 
 export function TodoDialog({ data, onClose }) {
   const [todoText, setTodoText] = useState(data?.text ?? '');
@@ -37,12 +40,11 @@ export function TodoDialog({ data, onClose }) {
             {isCreateMode ? 'Nový úkol' : 'Upravit úkol'}
           </h2>
           <div>
-            <Button
-              className={styles.closeButton}
+            <IconButton
               onClick={onClose}
             >
-              ❌
-            </Button>
+              <Icon path={mdiClose} size={1} />
+            </IconButton>
           </div>
         </div>
         <div className={styles.content}>

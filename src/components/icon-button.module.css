@@ -1,0 +1,14 @@
+.element {
+  padding: 0.35rem;
+  background-color: transparent;
+  border-radius: 100%;
+  color: #404040;
+}
+
+.element:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.element:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}

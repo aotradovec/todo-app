@@ -1,4 +1,4 @@
-.nav_menu {
+.wrapper {
   display: flex;
   flex-direction: row;
 }
@@ -12,5 +12,5 @@
 
 .nav_link__active {
   background-color: rgba(66, 165, 245, 0.1);
-  border-bottom-color: rgba(66, 165, 245);
+  border-bottom-color: #42a5f5;
 }

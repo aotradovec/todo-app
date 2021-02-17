@@ -1,0 +1,18 @@
+.element {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 0.4rem;
+  background-color: #42a5f5;
+  color: white;
+
+  transition: background-color 150ms;
+}
+
+.element:hover, .element:active {
+  text-decoration: none;
+  background-color: #2e73ab;
+}

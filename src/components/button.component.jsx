@@ -1,7 +1,11 @@
 import React from 'react';
+import styles from './button.module.css';
 
 export function Button({ ...rest }) {
   return (
-    <button {...rest} />
+    <button
+      className={styles.element}
+      {...rest}
+    />
   );
 }
