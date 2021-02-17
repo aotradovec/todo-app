@@ -5,7 +5,7 @@ import { TodoDialog } from './todo-dialog.component';
 import styles from './todo.module.css';
 import { IconButton } from './icon-button.component';
 import Icon from '@mdi/react';
-import { mdiCheckCircle, mdiCheckCircleOutline, mdiDeleteForeverOutline, mdiPencil } from '@mdi/js';
+import { mdiCheckCircle, mdiCircleOutline, mdiDeleteForeverOutline, mdiPencil } from '@mdi/js';
 import { Loading } from './loading.component';
 
 export const Todo = React.forwardRef(({ data, className }, ref) => {
@@ -39,7 +39,7 @@ export const Todo = React.forwardRef(({ data, className }, ref) => {
             onClick={handleDoneButtonClick}
           >
             <Icon
-              path={data.done ? mdiCheckCircle : mdiCheckCircleOutline}
+              path={data.done ? mdiCheckCircle : mdiCircleOutline}
               size={1}
               color="#50C878"
             />
