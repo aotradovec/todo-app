@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Portal } from './portal.component';
+import { Modal } from './modal.component';
 import styles from './todo-dialog.module.css';
 import { Button } from './button.component';
 import { TextField } from './text-field.component';
@@ -33,7 +33,7 @@ export function TodoDialog({ data, onClose }) {
   }
 
   return (
-    <Portal onClickAway={onClose}>
+    <Modal onClickAway={onClose}>
       <div className={styles.dialog}>
         <div className={styles.header}>
           <h2 className={styles.title}>
@@ -61,6 +61,6 @@ export function TodoDialog({ data, onClose }) {
           </Button>
         </div>
       </div>
-    </Portal>
+    </Modal>
   );
 }

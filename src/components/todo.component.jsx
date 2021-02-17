@@ -32,7 +32,7 @@ export const Todo = React.forwardRef(({ data, className }, ref) => {
   return (
     <div className={classNames(styles.todo, data.done && styles.done, className)} ref={ref}>
       {loading
-        ? (<Loading />)
+        ? (<Loading className={styles.loading} size={1} />)
         : (
           <IconButton
             className={classNames(styles.action, styles.done_action)}

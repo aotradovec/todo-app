@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './portal.module.css';
+import styles from './modal.module.css';
 
-export function Portal({ onClickAway, children }) {
+export function Modal({ onClickAway, children }) {
   const { current: modalRootElement } = useRef(document.getElementById('modal-root'));
   const { current: element } = useRef(document.createElement('div'));
 
@@ -13,7 +13,7 @@ export function Portal({ onClickAway, children }) {
   }
 
   useEffect(() => {
-    element.className = styles.portal;
+    element.classList.add(styles.wrapper);
     element.addEventListener('click', handleElementClickEvent);
 
     modalRootElement.appendChild(element);
@@ -23,8 +23,5 @@ export function Portal({ onClickAway, children }) {
     };
   }, [modalRootElement, element]);
 
-  return createPortal(
-    children,
-    element
-  );
+  return createPortal(children, element);
 }

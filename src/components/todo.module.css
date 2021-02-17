@@ -11,6 +11,10 @@
   padding: 0 0.5rem;
 }
 
+.loading {
+  padding: 0.35rem 0.7rem;
+}
+
 .action {
   margin: 0 0.25rem;
   opacity: 1;
