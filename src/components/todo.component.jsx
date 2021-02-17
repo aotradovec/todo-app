@@ -6,31 +6,46 @@ import styles from './todo.module.css';
 import { IconButton } from './icon-button.component';
 import Icon from '@mdi/react';
 import { mdiCheckCircle, mdiCheckCircleOutline, mdiDeleteForeverOutline, mdiPencil } from '@mdi/js';
+import { Loading } from './loading.component';
 
 export const Todo = React.forwardRef(({ data, className }, ref) => {
   const [showEditDialog, setShowEditDialog] = useState(false);
+  const [loading, setLoading] = useState(false);
   const todoContext = useTodoContext();
 
-  function handleDoneButtonClick() {
-    todoContext.update(data.id, { done: !data.done });
+  async function handleDoneButtonClick() {
+    setLoading(true);
+
+    await todoContext.update(data.id, { done: !data.done });
+
+    setLoading(false);
   }
 
-  function handleRemoveButtonClick() {
-    todoContext.remove(data.id);
+  async function handleRemoveButtonClick() {
+    setLoading(true);
+
+    await todoContext.remove(data.id);
+
+    setLoading(false);
   }
 
   return (
     <div className={classNames(styles.todo, data.done && styles.done, className)} ref={ref}>
-      <IconButton
-        className={classNames(styles.action, styles.done_action)}
-        onClick={handleDoneButtonClick}
-      >
-        <Icon
-          path={data.done ? mdiCheckCircle : mdiCheckCircleOutline}
-          size={1}
-          color="#50C878"
-        />
-      </IconButton>
+      {loading
+        ? (<Loading />)
+        : (
+          <IconButton
+            className={classNames(styles.action, styles.done_action)}
+            onClick={handleDoneButtonClick}
+          >
+            <Icon
+              path={data.done ? mdiCheckCircle : mdiCheckCircleOutline}
+              size={1}
+              color="#50C878"
+            />
+          </IconButton>
+        )
+      }
       <div className={styles.text}>
         {data.text}
       </div>

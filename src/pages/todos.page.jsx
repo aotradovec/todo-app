@@ -27,14 +27,9 @@ export function Todos() {
     <div className={styles.todo_list}>
       <div className={styles.header}>
         <h3 className={styles.header_text}>Todos</h3>
-        {todoContext.loading
-          ? (<div className={styles.loading}>Načítání..</div>)
-          : (
-            <IconButton onClick={() => setShowNewTodoDialog(true)}>
-              <Icon path={mdiPlusBox} size={1.15} />
-            </IconButton>
-          )
-        }
+        <IconButton onClick={() => setShowNewTodoDialog(true)}>
+          <Icon path={mdiPlusBox} size={1.15} />
+        </IconButton>
       </div>
       <FlipMove duration={250}>
         {sortedTodos.map((t) => <Todo key={t.id} className={styles.todo} data={t} />)}
