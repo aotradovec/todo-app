@@ -6,6 +6,7 @@ import { TodoDialog } from '../components/todo-dialog.component';
 import Icon from '@mdi/react';
 import { mdiPlusBox } from '@mdi/js';
 import { IconButton } from '../components/icon-button.component';
+import FlipMove from 'react-flip-move';
 
 function sortTodos(a, b) {
   if (a.done && !b.done) {
@@ -35,7 +36,9 @@ export function Todos() {
           )
         }
       </div>
-      {sortedTodos.map((t) => <Todo key={t.id} className={styles.todo} data={t} />)}
+      <FlipMove duration={250}>
+        {sortedTodos.map((t) => <Todo key={t.id} className={styles.todo} data={t} />)}
+      </FlipMove>
       {showNewTodoDialog && (<TodoDialog onClose={() => setShowNewTodoDialog(false)} />)}
     </div>
   );

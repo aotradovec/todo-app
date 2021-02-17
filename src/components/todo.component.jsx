@@ -7,7 +7,7 @@ import { IconButton } from './icon-button.component';
 import Icon from '@mdi/react';
 import { mdiCheckCircle, mdiCheckCircleOutline, mdiDeleteForeverOutline, mdiPencil } from '@mdi/js';
 
-export const Todo = React.memo(function({ data, className }) {
+export const Todo = React.forwardRef(({ data, className }, ref) => {
   const [showEditDialog, setShowEditDialog] = useState(false);
   const todoContext = useTodoContext();
 
@@ -20,8 +20,11 @@ export const Todo = React.memo(function({ data, className }) {
   }
 
   return (
-    <div className={classNames(styles.todo, data.done && styles.done, className)}>
-      <IconButton className={styles.action} onClick={handleDoneButtonClick}>
+    <div className={classNames(styles.todo, data.done && styles.done, className)} ref={ref}>
+      <IconButton
+        className={classNames(styles.action, styles.done_action)}
+        onClick={handleDoneButtonClick}
+      >
         <Icon
           path={data.done ? mdiCheckCircle : mdiCheckCircleOutline}
           size={1}
@@ -31,10 +34,18 @@ export const Todo = React.memo(function({ data, className }) {
       <div className={styles.text}>
         {data.text}
       </div>
-      <IconButton className={styles.action} onClick={() => setShowEditDialog(true)}>
+      <IconButton
+        className={styles.action}
+        disabled={data.done}
+        onClick={() => setShowEditDialog(true)}
+      >
         <Icon path={mdiPencil} size={1} color="#634919" />
       </IconButton>
-      <IconButton className={styles.action} onClick={handleRemoveButtonClick}>
+      <IconButton
+        className={styles.action}
+        disabled={data.done}
+        onClick={handleRemoveButtonClick}
+      >
         <Icon path={mdiDeleteForeverOutline} size={1} color="red" />
       </IconButton>
       {showEditDialog && (<TodoDialog data={data} onClose={() => setShowEditDialog(false)} />)}

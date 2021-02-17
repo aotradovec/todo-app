@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: background-color 200ms;
 }
 
 .text {
@@ -12,13 +13,20 @@
 
 .action {
   margin: 0 0.25rem;
+  opacity: 1;
+  transition: opacity 100ms;
 }
 
 .done {
-  background-color: rgba(0, 200, 83, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .done .text {
   text-decoration: line-through;
   opacity: 0.8;
+}
+
+.done .action:not(.done_action) {
+  cursor: inherit;
+  opacity: 0;
 }

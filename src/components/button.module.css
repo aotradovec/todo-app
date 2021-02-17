@@ -1,5 +1,6 @@
 .element {
   display: inline-flex;
+  font-family: inherit;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   cursor: pointer;
